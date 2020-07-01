@@ -1,0 +1,34 @@
+@import url(fontiran.css);
+
+body {
+    font-family: IRANSans, serif !important;
+    direction: rtl;
+    text-align: right;
+    letter-spacing: unset !important;
+}
+
+h1, h2, h3, h4, h5, h6, input, textarea, a {
+    font-family: IRANSans, serif !important;
+    font-weight: 600;
+}
+
+#mainNav .navbar-nav > li.nav-item > a {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.btn {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 15px 25px;
+    letter-spacing: 0;
+    text-transform: none;
+    border-radius: 0;
+    font-family: IRANSans, serif !important;
+}
+
+.post-meta {
+    text-align: left;
+}

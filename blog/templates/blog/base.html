@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>علیرضا کاویانی{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css"
+          integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If"
+          crossorigin="anonymous">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'blog/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,7 00italic' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'blog/css/clean-blog.min.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container" dir="ltr">
+        <a class="navbar-brand" href="#">علیرضا کاویانی</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            منو
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive" dir="rtl">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog:home' %}">خانه</a>
+                </li>
+
+                {% for cat in category %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">{{ cat.title }}</a>
+                    </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+{% block main %}
+
+{% endblock %}
+<hr>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item">
+                        <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+                        </a>
+                    </li>
+                </ul>
+                <p class="copyright text-muted">
+                    کپی رایت &copy; <span id="year"></span>
+                    <br>
+                    تمامی حقوق متعلق به وبسایت <a
+                        href="https://arkvn33.ir">arkvn33.ir</a>
+                    می‌باشد.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'blog/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'blog/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Custom scripts for this template -->
+<script src="{% static 'blog/js/clean-blog.min.js' %}"></script>
+<script>
+    $('#year').text(new Date().getFullYear());
+
+    $('body').scrollspy({target: '#main-nav'});
+
+    // Add smooth scrolling
+    $('#main-nav a').on('click', function (e) {
+        // Check for a hash value
+        if (this.hash !== '') {
+            // Prevent default behavior
+            e.preventDefault();
+
+            // Store hash
+            const hash = this.hash;
+
+            // Animate smooth scroll
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function () {
+                // Add hash to URL after scroll
+                window.location.hash = hash;
+            });
+        }
+    });
+
+    //Configure Slider
+    $('.carousel').carousel({
+        interval: 6000,
+        pause: 'hover'
+    });
+
+    //lightbox
+
+    $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+    });
+
+    // Video Play
+    $(function () {
+        // Auto play modal video
+        $(".video").click(function () {
+            var theModal = $(this).data("target"),
+                videoSRC = $(this).attr("data-video"),
+                videoSRCauto = videoSRC + "?modestbranding=1&rel=0&controls=0&showinfo=0&html5=1&autoplay=1";
+            $(theModal + ' iframe').attr('src', videoSRCauto);
+            $(theModal + ' button.close').click(function () {
+                $(theModal + ' iframe').attr('src', videoSRC);
+            });
+        });
+    });
+</script>
+</body>
+
+</html>
